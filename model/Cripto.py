@@ -132,7 +132,7 @@ def main():
     print("Volumen ajustado en 24h:", cripto.get_volume24a())
     print("Oferta circulante:", cripto.get_csupply())
     print("Oferta total:", cripto.get_tsupply())
-    print("Oferta máxima:", cripto.get_msupply())
+    
 
 
 if __name__ == "__main__":
