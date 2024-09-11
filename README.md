@@ -49,14 +49,64 @@ The following technologies are used for the development of the application:
 - [HTML & CSS] - User interface design
 - [Matplotlib] - Graph development
 
-## Dependencies
+## Configuración del Entorno / Env Config
 
-[ESP]
-Asegúrate de instalar las dependencias necesarias. Puedes hacerlo ejecutando:
+### [ESP]
 
-[ENG]
-Make sure to install the required dependencies by running:
+1. Clona el repositorio y navega al directorio del proyecto:
 
-```bash / PowerShell
-pip install -r requirements.txt
-```
+    ```bash
+    git clone https://github.com/tuusuario/tu-repositorio.git
+    cd tu-repositorio
+    ```
+
+2. Crea y activa un entorno virtual:
+
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # En Windows: .venv\Scripts\activate
+    ```
+
+3. Instala las dependencias:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Configura las variables de entorno necesarias (ver `.env.example`).
+
+5. Ejecuta la aplicación:
+
+    ```bash
+    flask run
+    ```
+
+### [ENG]
+
+1. Clone the repository and navigate to the project directory:
+
+    ```bash
+    git clone https://github.com/yourusername/your-repository.git
+    cd your-repository
+    ```
+
+2. Create and activate a virtual environment:
+
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    ```
+
+3. Install the dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Configure the necessary environment variables (see `.env.example`).
+
+5. Run the application:
+
+    ```bash
+    flask run
+    ```
