@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Criptomoneda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Datos de Criptomoneda</h1>
+    <p><strong>Símbolo:</strong> {{ crypto.symbol }}</p>
+    <p><strong>Nombre:</strong> {{ crypto.name }}</p>
+    <p><strong>ID:</strong> {{ crypto.nameid }}</p>
+    <p><strong>Ranking:</strong> {{ crypto.rank }}</p>
+    <p><strong>Precio (USD):</strong> {{ crypto.price_usd }}</p>
+    <p><strong>Cambio (24h):</strong> {{ crypto.percent_change_24h }}</p>
+    <p><strong>Cambio (1h):</strong> {{ crypto.percent_change_1h }}</p>
+    <p><strong>Cambio (7d):</strong> {{ crypto.percent_change_7d }}</p>
+    <p><strong>Precio (BTC):</strong> {{ crypto.price_btc }}</p>
+    <p><strong>Capitalización (USD):</strong> {{ crypto.market_cap_usd }}</p>
+    <p><strong>Volumen (24h):</strong> {{ crypto.volume24 }}</p>
+    <p><strong>Volumen Ajustado (24h):</strong> {{ crypto.volume24a }}</p>
+    <p><strong>Oferta Circulante:</strong> {{ crypto.csupply }}</p>
+    <p><strong>Oferta Total:</strong> {{ crypto.tsupply }}</p>
+    <p><strong>Oferta Máxima:</strong> {{ crypto.msupply }}</p>
+</body>
+</html>

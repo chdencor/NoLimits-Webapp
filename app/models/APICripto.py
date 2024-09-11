@@ -1,4 +1,4 @@
-from APIFetch import APIFetch
+from app.models.APIFetch import APIFetch
 
 """
 Clase hija para la API de criptomonedas.

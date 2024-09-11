@@ -8,7 +8,13 @@
 </head>
 <body>
     <h1>Bienvenido a mi aplicación Flask</h1>
-    <p>Nombre del usuario: {{ user.name }}</p>
-    <p>Edad del usuario: {{ user.age }}</p>
+
+    <!-- Form to input cryptocurrency ID -->
+    <h2>Consultar Criptomoneda</h2>
+    <form action="{{ url_for('home.show_cripto') }}" method="get">
+        <label for="cripto_id">ID de la Criptomoneda:</label>
+        <input type="text" id="cripto_id" name="cripto_id" required>
+        <button type="submit">Consultar</button>
+    </form>
 </body>
 </html>

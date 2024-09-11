@@ -3,7 +3,7 @@ Clase Cripto que contiene todos los metodos
 para recuperar la informacion de las criptomonedas.
 """
 
-from APICripto import APICripto
+from app.models.APICripto import APICripto
 
 class Cripto:
     """
