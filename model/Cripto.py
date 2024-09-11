@@ -6,137 +6,240 @@ para recuperar la informacion de las criptomonedas.
 from APICripto import APICripto
 
 class Cripto:
-    def _init_(self):
+    """
+    Clase Cripto que contiene todos los métodos para recuperar la información de las criptomonedas.
+    """
+
+    def __init__(self):
         self.data = APICripto()
         self.respuesta = self.data.APICall(self.data.url)  # Llamada a la API
 
     def parse_response(self):
-        # Convierte la respuesta de la API a JSON y la parsea para obtener los datos
+        """
+        Convierte la respuesta de la API a JSON y la parsea para obtener los datos.
+
+        :return: Lista de diccionarios con los datos de las criptomonedas.
+        :rtype: list
+        """
         parsed_response = self.data.APIParsing(self.respuesta)
         dataRetrieved = self.data.getKeyValue(parsed_response)
         return dataRetrieved
 
-    def get_Ids(self):
-        # Obtiene todos los IDs de las criptomonedas
-        dataRetrieved = self.parse_response()
-        ids = [item.get("id") for item in dataRetrieved]
-        return ids
+    def get_cripto_data(self, cripto_id):
+        """
+        Obtiene los datos de una criptomoneda específica por su ID.
 
-    def get_symbols(self):
-        # Obtiene todos los símbolos de las criptomonedas
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Diccionario con los datos de la criptomoneda.
+        :rtype: dict
+        """
         dataRetrieved = self.parse_response()
-        symbols = [item.get("symbol") for item in dataRetrieved]
-        return symbols
+        for item in dataRetrieved:
+            if item.get("id") == cripto_id:
+                return item
+        return None
 
-    def get_names(self):
-        # Obtiene todos los nombres de las criptomonedas
-        dataRetrieved = self.parse_response()
-        names = [item.get("name") for item in dataRetrieved]
-        return names
+    def get_symbol(self, cripto_id):
+        """
+        Obtiene el símbolo de una criptomoneda específica.
 
-    def get_nameids(self):
-        # Obtiene todos los 'nameid' de las criptomonedas
-        dataRetrieved = self.parse_response()
-        nameids = [item.get("nameid") for item in dataRetrieved]
-        return nameids
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Símbolo de la criptomoneda.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("symbol") if cripto_data else None
 
-    def get_rank(self):
-        # Obtiene el ranking de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        ranks = [item.get("rank") for item in dataRetrieved]
-        return ranks
+    def get_name(self, cripto_id):
+        """
+        Obtiene el nombre de una criptomoneda específica.
 
-    def get_price_usd(self):
-        # Obtiene el precio en USD de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        prices_usd = [item.get("price_usd") for item in dataRetrieved]
-        return prices_usd
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Nombre de la criptomoneda.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("name") if cripto_data else None
 
-    def get_percent_change_24h(self):
-        # Obtiene el porcentaje de cambio en las últimas 24 horas de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        percent_change_24h = [item.get("percent_change_24h") for item in dataRetrieved]
-        return percent_change_24h
+    def get_nameid(self, cripto_id):
+        """
+        Obtiene el 'nameid' de una criptomoneda específica.
 
-    def get_percent_change_1h(self):
-        # Obtiene el porcentaje de cambio en la última hora de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        percent_change_1h = [item.get("percent_change_1h") for item in dataRetrieved]
-        return percent_change_1h
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: 'Nameid' de la criptomoneda.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("nameid") if cripto_data else None
 
-    def get_percent_change_7d(self):
-        # Obtiene el porcentaje de cambio en los últimos 7 días de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        percent_change_7d = [item.get("percent_change_7d") for item in dataRetrieved]
-        return percent_change_7d
+    def get_rank(self, cripto_id):
+        """
+        Obtiene el ranking de una criptomoneda específica.
 
-    def get_price_btc(self):
-        # Obtiene el precio en BTC de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        prices_btc = [item.get("price_btc") for item in dataRetrieved]
-        return prices_btc
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Ranking de la criptomoneda.
+        :rtype: int
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("rank") if cripto_data else None
 
-    def get_market_cap_usd(self):
-        # Obtiene la capitalización de mercado en USD de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        market_cap_usd = [item.get("market_cap_usd") for item in dataRetrieved]
-        return market_cap_usd
+    def get_price_usd(self, cripto_id):
+        """
+        Obtiene el precio en USD de una criptomoneda específica.
 
-    def get_volume24(self):
-        # Obtiene el volumen en las últimas 24 horas de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        volume24 = [item.get("volume24") for item in dataRetrieved]
-        return volume24
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Precio en USD de la criptomoneda.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("price_usd") if cripto_data else None
 
-    def get_volume24a(self):
-        # Obtiene el volumen ajustado en las últimas 24 horas de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        volume24a = [item.get("volume24a") for item in dataRetrieved]
-        return volume24a
+    def get_percent_change_24h(self, cripto_id):
+        """
+        Obtiene el porcentaje de cambio en las últimas 24 horas de una criptomoneda específica.
 
-    def get_csupply(self):
-        # Obtiene la oferta circulante de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        csupply = [item.get("csupply") for item in dataRetrieved]
-        return csupply
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Porcentaje de cambio en las últimas 24 horas.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("percent_change_24h") if cripto_data else None
 
-    def get_tsupply(self):
-        # Obtiene la oferta total de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        tsupply = [item.get("tsupply") for item in dataRetrieved]
-        return tsupply
+    def get_percent_change_1h(self, cripto_id):
+        """
+        Obtiene el porcentaje de cambio en la última hora de una criptomoneda específica.
 
-    def get_msupply(self):
-        # Obtiene la oferta máxima de todas las criptomonedas
-        dataRetrieved = self.parse_response()
-        msupply = [item.get("msupply") for item in dataRetrieved]
-        return msupply
-    #pruba#
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Porcentaje de cambio en la última hora.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("percent_change_1h") if cripto_data else None
 
+    def get_percent_change_7d(self, cripto_id):
+        """
+        Obtiene el porcentaje de cambio en los últimos 7 días de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Porcentaje de cambio en los últimos 7 días.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("percent_change_7d") if cripto_data else None
+
+    def get_price_btc(self, cripto_id):
+        """
+        Obtiene el precio en BTC de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Precio en BTC de la criptomoneda.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("price_btc") if cripto_data else None
+
+    def get_market_cap_usd(self, cripto_id):
+        """
+        Obtiene la capitalización de mercado en USD de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Capitalización de mercado en USD de la criptomoneda.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("market_cap_usd") if cripto_data else None
+
+    def get_volume24(self, cripto_id):
+        """
+        Obtiene el volumen en las últimas 24 horas de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Volumen en las últimas 24 horas.
+        :rtype: float
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("volume24") if cripto_data else None
+
+    def get_volume24a(self, cripto_id):
+        """
+        Obtiene el volumen ajustado en las últimas 24 horas de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Volumen ajustado en las últimas 24 horas.
+        :rtype: float
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("volume24a") if cripto_data else None
+
+    def get_csupply(self, cripto_id):
+        """
+        Obtiene la oferta circulante de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Oferta circulante.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("csupply") if cripto_data else None
+
+    def get_tsupply(self, cripto_id):
+        """
+        Obtiene la oferta total de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Oferta total.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("tsupply") if cripto_data else None
+
+    def get_msupply(self, cripto_id):
+        """
+        Obtiene la oferta máxima de una criptomoneda específica.
+
+        :param cripto_id: ID de la criptomoneda.
+        :type cripto_id: str
+        :return: Oferta máxima.
+        :rtype: str
+        """
+        cripto_data = self.get_cripto_data(cripto_id)
+        return cripto_data.get("msupply") if cripto_data else None
 
 def main():
     cripto = Cripto()
 
-    # Mostrar los resultados de cada getter
-    print("IDs:", cripto.get_Ids())
-    print("Símbolos:", cripto.get_symbols())
-    print("Nombres:", cripto.get_names())
-    print("Name IDs:", cripto.get_nameids())
-    print("Rankings:", cripto.get_rank())
-    print("Precios en USD:", cripto.get_price_usd())
-    print("Cambio % en 24h:", cripto.get_percent_change_24h())
-    print("Cambio % en 1h:", cripto.get_percent_change_1h())
-    print("Cambio % en 7d:", cripto.get_percent_change_7d())
-    print("Precios en BTC:", cripto.get_price_btc())
-    print("Capitalización de mercado en USD:", cripto.get_market_cap_usd())
-    print("Volumen en 24h:", cripto.get_volume24())
-    print("Volumen ajustado en 24h:", cripto.get_volume24a())
-    print("Oferta circulante:", cripto.get_csupply())
-    print("Oferta total:", cripto.get_tsupply())
-    print("hola si")
-    
+    cripto_id = "90"  # Ejemplo de ID para Bitcoin
 
+    # Mostrar los resultados de cada getter para una criptomoneda específica
+    print("Símbolo:", cripto.get_symbol(cripto_id))
+    print("Nombre:", cripto.get_name(cripto_id))
+    print("Ranking:", cripto.get_rank(cripto_id))
+    print("Precio en USD:", cripto.get_price_usd(cripto_id))
+    print("Cambio % en 24h:", cripto.get_percent_change_24h(cripto_id))
+    print("Cambio % en 1h:", cripto.get_percent_change_1h(cripto_id))
+    print("Cambio % en 7d:", cripto.get_percent_change_7d(cripto_id))
+    print("Precio en BTC:", cripto.get_price_btc(cripto_id))
+    print("Capitalización de mercado en USD:", cripto.get_market_cap_usd(cripto_id))
+    print("Volumen en 24h:", cripto.get_volume24(cripto_id))
+    print("Volumen ajustado en 24h:", cripto.get_volume24a(cripto_id))
+    print("Oferta circulante:", cripto.get_csupply(cripto_id))
+    print("Oferta total:", cripto.get_tsupply(cripto_id))
+    print("Oferta máxima:", cripto.get_msupply(cripto_id))
 
 if __name__ == "__main__":
     main()
-
