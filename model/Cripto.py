@@ -228,32 +228,3 @@ class Cripto:
         cripto_data = self.get_cripto_data(cripto_id)
         return cripto_data.get("msupply") if cripto_data else None
 
-def main():
-    criptos = Cripto()
-    
-    # Retrieve all IDs
-    ids = criptos.getAllids()
-    print("Todos los ids de las criptos: ", ids)
-
-
-    for cripto_id in ids:
-        print("ID:", cripto_id)
-        print("Símbolo:", criptos.get_symbol(cripto_id))
-        print("Nombre:", criptos.get_name(cripto_id))
-        print("Ranking:", criptos.get_rank(cripto_id))
-        print("Precio en USD:", criptos.get_price_usd(cripto_id))
-        print("Cambio % en 24h:", criptos.get_percent_change_24h(cripto_id))
-        print("Cambio % en 1h:", criptos.get_percent_change_1h(cripto_id))
-        print("Cambio % en 7d:", criptos.get_percent_change_7d(cripto_id))
-        print("Precio en BTC:", criptos.get_price_btc(cripto_id))
-        print("Capitalización de mercado en USD:", criptos.get_market_cap_usd(cripto_id))
-        print("Volumen en 24h:", criptos.get_volume24(cripto_id))
-        print("Volumen ajustado en 24h:", criptos.get_volume24a(cripto_id))
-        print("Oferta circulante:", criptos.get_csupply(cripto_id))
-        print("Oferta total:", criptos.get_tsupply(cripto_id))
-        print("Oferta máxima:", criptos.get_msupply(cripto_id))
-        print("-----------------------------------------")
-
-if __name__ == "__main__":
-    main()
-
