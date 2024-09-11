@@ -111,6 +111,7 @@ class Cripto:
         dataRetrieved = self.parse_response()
         msupply = [item.get("msupply") for item in dataRetrieved]
         return msupply
+    #pruba#
 
 
 def main():
