@@ -56,7 +56,7 @@ The following technologies are used for the development of the application:
 1. Clona el repositorio y navega al directorio del proyecto:
 
     ```bash
-    git clone https://github.com/tuusuario/tu-repositorio.git
+    git clone https://github.com/chdencor/CriptoVisualizer.git
     cd tu-repositorio
     ```
 
@@ -86,7 +86,7 @@ The following technologies are used for the development of the application:
 1. Clone the repository and navigate to the project directory:
 
     ```bash
-    git clone https://github.com/yourusername/your-repository.git
+    git clone https://github.com/chdencor/CriptoVisualizer.git
     cd your-repository
     ```
 
