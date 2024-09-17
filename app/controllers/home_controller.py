@@ -11,5 +11,5 @@ def index():
 def show_cripto():
     cripto_id = request.args.get('cripto_id')
     cripto = Cripto()
-    data = cripto.get_cripto_data(cripto_id)
+    data = cripto.getCriptoData(cripto_id)
     return render_template('cripto.html', crypto=data)
