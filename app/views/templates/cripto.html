@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <h1>Grafica de Criptomoneda</h1>
+    <img src="{{ url_for('crypto.get_crypto_chart', cripto_id='90') }}" alt="Gráfico de cambios de criptomoneda">
     <h1>Datos de Criptomoneda</h1>
     <p><strong>Símbolo:</strong> {{ crypto.symbol }}</p>
     <p><strong>Nombre:</strong> {{ crypto.name }}</p>
