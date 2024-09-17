@@ -10,6 +10,14 @@ def index():
 @home_bp.route('/cripto')
 def show_cripto():
     cripto_id = request.args.get('cripto_id')
-    cripto = Cripto()
-    data = cripto.getCriptoData(cripto_id)
-    return render_template('cripto.html', crypto=data)
+    if cripto_id:
+        cripto = Cripto()
+        data = cripto.getCriptoData(cripto_id)
+        if data:
+            return render_template('cripto.html', crypto=data)
+        else:
+            # Manejar el caso en que no se encontró la criptomoneda
+            return render_template('error.html', message="Criptomoneda no encontrada"), 404
+    else:
+        # Manejar el caso en que no se proporcionó el ID
+        return render_template('error.html', message="ID de criptomoneda no proporcionado"), 400

@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos de Criptomoneda</title>
+    <title>Detalles de la Criptomoneda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 <body>
-    <h1>Grafica de Criptomoneda</h1>
-    <img src="{{ url_for('crypto.get_crypto_chart', cripto_id='90') }}" alt="Gráfico de cambios de criptomoneda">
-    <h1>Datos de Criptomoneda</h1>
-    <p><strong>Símbolo:</strong> {{ crypto.symbol }}</p>
-    <p><strong>Nombre:</strong> {{ crypto.name }}</p>
-    <p><strong>ID:</strong> {{ crypto.nameid }}</p>
-    <p><strong>Ranking:</strong> {{ crypto.rank }}</p>
-    <p><strong>Precio (USD):</strong> {{ crypto.price_usd }}</p>
-    <p><strong>Cambio (24h):</strong> {{ crypto.percent_change_24h }}</p>
-    <p><strong>Cambio (1h):</strong> {{ crypto.percent_change_1h }}</p>
-    <p><strong>Cambio (7d):</strong> {{ crypto.percent_change_7d }}</p>
-    <p><strong>Precio (BTC):</strong> {{ crypto.price_btc }}</p>
-    <p><strong>Capitalización (USD):</strong> {{ crypto.market_cap_usd }}</p>
-    <p><strong>Volumen (24h):</strong> {{ crypto.volume24 }}</p>
-    <p><strong>Volumen Ajustado (24h):</strong> {{ crypto.volume24a }}</p>
-    <p><strong>Oferta Circulante:</strong> {{ crypto.csupply }}</p>
-    <p><strong>Oferta Total:</strong> {{ crypto.tsupply }}</p>
-    <p><strong>Oferta Máxima:</strong> {{ crypto.msupply }}</p>
+    <h1>Detalles de la Criptomoneda</h1>
+
+    {% if crypto %}
+        <h2>Nombre: {{ crypto.name }}</h2>
+        <p>Símbolo: {{ crypto.symbol }}</p>
+        <p>Ranking: {{ crypto.rank }}</p>
+        <p>Precio (USD): {{ crypto.priceUsd }}</p>
+        <p>Cambio en 24h: {{ crypto.percentChange24h }}%</p>
+        <p>Cambio en 1h: {{ crypto.percentChange1h }}%</p>
+        <p>Cambio en 7d: {{ crypto.percentChange7d }}%</p>
+        <p>Precio (BTC): {{ crypto.priceBtc }}</p>
+        <p>Capitalización de mercado (USD): {{ crypto.marketCapUsd }}</p>
+        <p>Volumen en 24h: {{ crypto.volume24 }}</p>
+        <p>Volumen ajustado en 24h: {{ crypto.volume24a }}</p>
+        <p>Oferta circulante: {{ crypto.csupply }}</p>
+        <p>Oferta total: {{ crypto.tsupply }}</p>
+        <p>Oferta máxima: {{ crypto.msupply }}</p>
+
+        <!-- Imagen del gráfico de cambios porcentuales -->
+        <img id="crypto-chart" alt="Gráfico de cambios porcentuales">
+    {% else %}
+        <p>No se encontraron datos para esta criptomoneda.</p>
+    {% endif %}
 </body>
 </html>
