@@ -2,7 +2,7 @@
 operaciones para guardar los datos en un archivo txt
 """
 
-from Cripto import Cripto
+from app.models.Cripto import Cripto
 import os
 import json
 
