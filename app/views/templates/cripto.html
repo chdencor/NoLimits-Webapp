@@ -14,17 +14,17 @@
         <h2>Nombre: {{ crypto.name }}</h2>
         <p>Símbolo: {{ crypto.symbol }}</p>
         <p>Ranking: {{ crypto.rank }}</p>
-        <p>Precio (USD): {{ crypto.priceUsd }}</p>
-        <p>Cambio en 24h: {{ crypto.percentChange24h }}%</p>
-        <p>Cambio en 1h: {{ crypto.percentChange1h }}%</p>
-        <p>Cambio en 7d: {{ crypto.percentChange7d }}%</p>
-        <p>Precio (BTC): {{ crypto.priceBtc }}</p>
-        <p>Capitalización de mercado (USD): {{ crypto.marketCapUsd }}</p>
-        <p>Volumen en 24h: {{ crypto.volume24 }}</p>
-        <p>Volumen ajustado en 24h: {{ crypto.volume24a }}</p>
-        <p>Oferta circulante: {{ crypto.csupply }}</p>
-        <p>Oferta total: {{ crypto.tsupply }}</p>
-        <p>Oferta máxima: {{ crypto.msupply }}</p>
+        <p>Precio (USD): {{ crypto.price_usd or 'N/A' }}</p>
+        <p>Cambio en 24h: {{ crypto.percent_change_24h or 'N/A' }}%</p>
+        <p>Cambio en 1h: {{ crypto.percent_change_1h or 'N/A' }}%</p>
+        <p>Cambio en 7d: {{ crypto.percent_change_7d or 'N/A' }}%</p>
+        <p>Precio (BTC): {{ crypto.price_btc or 'N/A' }}</p>
+        <p>Capitalización de mercado (USD): {{ crypto.market_cap_usd or 'N/A' }}</p>
+        <p>Volumen en 24h: {{ crypto.volume24 or 'N/A' }}</p>
+        <p>Volumen ajustado en 24h: {{ crypto.volume24a or 'N/A' }}</p>
+        <p>Oferta circulante: {{ crypto.csupply or 'N/A' }}</p>
+        <p>Oferta total: {{ crypto.tsupply or 'N/A' }}</p>
+        <p>Oferta máxima: {{ crypto.msupply or 'N/A' }}</p>
 
         <!-- Imagen del gráfico de cambios porcentuales -->
         <img id="crypto-chart" alt="Gráfico de cambios porcentuales">
@@ -33,3 +33,4 @@
     {% endif %}
 </body>
 </html>
+

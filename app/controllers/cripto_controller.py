@@ -11,7 +11,7 @@ def get_crypto_data(cripto_id):
     data = {
         'symbol': cripto.getSymbol(cripto_id),
         'name': cripto.getName(cripto_id),
-        'nameid': cripto.getNameid(cripto_id),
+        'nameid': cripto.getNameId(cripto_id),
         'rank': cripto.getRank(cripto_id),
         'priceUsd': cripto.getPriceUsd(cripto_id),
         'percentChange24h': cripto.getPercentChange24h(cripto_id),
@@ -31,7 +31,7 @@ def get_crypto_data(cripto_id):
 def get_crypto_chart(cripto_id):
     cripto = Cripto()
 
-    # Simulación de datos para el ejemplo (puedes usar datos reales)
+    # Obtener los datos de cambio porcentual
     changes = [
         cripto.getPercentChange1h(cripto_id),
         cripto.getPercentChange24h(cripto_id),
