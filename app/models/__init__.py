@@ -1,10 +1,10 @@
 # models/__init__.py
 
-from models.supabaseDAO import SupabaseDAO
-from config import Config
+from app.models.supabaseDAO import SupabaseDAO
+from app.config import Config
 
 # Crear una instancia del DAO
-dao_instance = SupabaseDAO(Config.SUPABASE_DB_URL)
+dao_instance = SupabaseDAO(Config.DATABASE_URL)
 
 def initialize():
     """Función para inicializar el DAO."""
