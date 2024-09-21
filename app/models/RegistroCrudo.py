@@ -12,25 +12,24 @@ class Registro:
         self.criptoRegistrado = self._loadFromFile()
 
     def _loadFromFile(self):
-        """
-        Carga los datos del archivo JSON. Si el archivo no existe o tiene errores,
-        retorna un diccionario con una lista de IDs registrados.
-        """
         if os.path.exists(self.archivo):
             try:
                 with open(self.archivo, 'r') as file:
                     data = json.load(file)
+                    # Asegúrate de que las claves necesarias estén presentes
+                    if 'idsRegistrados' not in data:
+                        data['idsRegistrados'] = []
+                    if 'idsNuevos' not in data:
+                        data['idsNuevos'] = []
             except json.JSONDecodeError:
-                # El archivo JSON está corrupto o malformado
-                data = {"idsRegistrados": []}
+                data = {"idsRegistrados": [], "idsNuevos": []}
             except Exception as e:
-                # Manejar otros posibles errores
                 print(f"Error al cargar el archivo: {e}")
-                data = {"idsRegistrados": []}
+                data = {"idsRegistrados": [], "idsNuevos": []}
         else:
-            # Archivo no existe, se crea uno nuevo
-            data = {"idsRegistrados": []}
+            data = {"idsRegistrados": [], "idsNuevos": []}
         return data
+
 
     def _saveToFile(self):
         """
