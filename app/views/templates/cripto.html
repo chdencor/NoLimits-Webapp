@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de la Criptomoneda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/DynamicMatplot.js') }}" defer></script>
 </head>
 <body>
     <h1>Detalles de la Criptomoneda</h1>
@@ -24,7 +24,7 @@
         <p>Volumen ajustado en 24h: {{ crypto.volume24a or 'N/A' }}</p>
         <p>Oferta circulante: {{ crypto.csupply or 'N/A' }}</p>
         <p>Oferta total: {{ crypto.tsupply or 'N/A' }}</p>
-        <p>Oferta máxima: {{ crypto.msupply or 'N/A' }}</p>
+        <p>Oferta máxima: {{ crypto.msupply or '∞' }}</p>
 
         <!-- Imagen del gráfico de cambios porcentuales -->
         <img id="crypto-chart" alt="Gráfico de cambios porcentuales">

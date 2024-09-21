@@ -5,6 +5,7 @@ import requests
 
 """
 Crea una clase abstracta para las llamadas a la API.
+Actua como API gateway para las APIs consumidas
 """
 class APIFetch(ABC):
     def __init__(self, url):

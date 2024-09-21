@@ -3,18 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CriptoVisualizer</title>
+    <title>Criptovisualizer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
 </head>
 <body>
-    <h1>CriptoVisualizer</h1>
+    <header>
+        <h1>CriptoVisualizer</h1>
+        <input type="text" id="search" placeholder="Buscar criptomonedas...">
+    </header>
+    <main>
+        <section>
+            <h2>ANALIZÁ TU CRIPTO FAVORITA</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Valor</th>
+                        <th>Rendimiento</th>
+                        <th>Más Información</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cripto in cryptos %}
+                    <tr>
+                        <td>{{ cripto['name'] }}</td>
+                        <td>${{ cripto['price_usd'] }}</td>
+                        <td>{{ cripto['percent_change_7d'] }}%</td>
+                        <td class="btn-cell">
+                            <a href="{{ url_for('home.show_cripto', cripto_id=cripto['id']) }}" class="btn">Analizar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 CriptoWeb</p>
+    </footer>
 
-    <!-- Form to input cryptocurrency ID -->
-    <h2>Consultar Criptomoneda</h2>
-    <form action="{{ url_for('home.show_cripto') }}" method="get">
-        <label for="cripto_id">ID de la Criptomoneda:</label>
-        <input type="text" id="cripto_id" name="cripto_id" required>
-        <button type="submit">Consultar</button>
-    </form>
+    <script src="{{ url_for('static', filename='js/searchFilter.js') }}"></script>
 </body>
 </html>
