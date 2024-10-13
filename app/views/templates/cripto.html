@@ -5,32 +5,270 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de la Criptomoneda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
     <script src="{{ url_for('static', filename='js/DynamicMatplot.js') }}" defer></script>
+    
+    <title>{{ crypto.name }} - Información</title>
+    <style>
+        body {
+            background-color: #1c1c1c; /* Fondo gris oscuro */
+            color: #f0f0f0; /* Texto en blanco */
+            font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #ffd700; /* Color amarillo para los títulos */
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        .price-large {
+            font-size: 2rem; /* Tamaño grande para el precio */
+            color: #ffd700; /* Color amarillo */
+            margin-bottom: 10px;
+        }
+        .percentage-change {
+            font-size: 1.2rem;
+            color: #4caf50; /* Verde para el cambio positivo */
+        }
+        .crypto-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .crypto-data {
+            max-width: 50%;
+        }
+        .crypto-data h3 {
+            color: #ffd700; /* Color amarillo para los subtítulos */
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 8px 0;
+        }
+        td.title {
+            text-align: left;
+        }
+        td.data {
+            text-align: right;
+            padding-right: 30px; /* Margen derecho para alinear mejor los datos */
+        }
+        .crypto-graphic {
+            width: 40%;
+            height: 300px;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+        }
+        .crypto-graphic img {
+            max-width: 100%;
+            height: auto;
+        }
+        header a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        header a:hover {
+            color: #ffd700;
+        }
+
+        header a:visited {
+            color: #ffd700;
+        }
+        
+        .crypto-converter {
+            margin-top: 20px; /* Espacio entre la tabla y el convertidor */
+            color: #ffd700;
+        }
+
+        .crypto-graphic {
+            width: 40%;
+            height: 300px;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            margin-left: auto;
+            margin-right: auto; /* Asegura que el gráfico esté bien posicionado */
+        }
+
+        .crypto-converter table {
+            width: 100%;
+        }
+
+        .crypto-converter input {
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        .crypto-converter td {
+            padding: 8px 0;
+        }
+
+        .crypto-converter td.title {
+            text-align: left;
+        }
+
+        .crypto-converter td.data {
+            text-align: right;
+            padding-right: 30px;
+        }
+
+
+
+    </style>
+
+
 </head>
 <body>
-    <h1>Detalles de la Criptomoneda</h1>
 
-    {% if crypto %}
-        <h2>Nombre: {{ crypto.name }}</h2>
-        <p>Símbolo: {{ crypto.symbol }}</p>
-        <p>Ranking: {{ crypto.rank }}</p>
-        <p>Precio (USD): {{ crypto.price_usd or 'N/A' }}</p>
-        <p>Cambio en 24h: {{ crypto.percent_change_24h or 'N/A' }}%</p>
-        <p>Cambio en 1h: {{ crypto.percent_change_1h or 'N/A' }}%</p>
-        <p>Cambio en 7d: {{ crypto.percent_change_7d or 'N/A' }}%</p>
-        <p>Precio (BTC): {{ crypto.price_btc or 'N/A' }}</p>
-        <p>Capitalización de mercado (USD): {{ crypto.market_cap_usd or 'N/A' }}</p>
-        <p>Volumen en 24h: {{ crypto.volume24 or 'N/A' }}</p>
-        <p>Volumen ajustado en 24h: {{ crypto.volume24a or 'N/A' }}</p>
-        <p>Oferta circulante: {{ crypto.csupply or 'N/A' }}</p>
-        <p>Oferta total: {{ crypto.tsupply or 'N/A' }}</p>
-        <p>Oferta máxima: {{ crypto.msupply or '∞' }}</p>
+    <header>
+        <h1><a href="{{ url_for('home.index') }}" style="text-decoration: none;">CriptoVisualizer</a></h1>
+    </header>
 
-        <!-- Imagen del gráfico de cambios porcentuales -->
-        <img id="crypto-chart" alt="Gráfico de cambios porcentuales">
-    {% else %}
+    <div class="container">
+        {% if crypto %}
+        <h1>{{ crypto.name }} ({{ crypto.symbol }})</h1>
+        <div class="price-large">Precio (USD): <span style="color: white;"> ${{ crypto.price_usd or 'N/A' }}</span></div>
+        
+        <div class="crypto-info">
+            <div class="crypto-data">
+                <table>
+                    <tr>
+                        <td class="title"><h3>Ranking:</h3></td>
+                        <td class="data">{{ crypto.rank }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Cambio en 24h:</h3></td>
+                        <td class="data">{{ crypto.percent_change_24h or 'N/A' }}%</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Cambio en 1h:</h3></td>
+                        <td class="data">{{ crypto.percent_change_1h or 'N/A' }}%</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Cambio en 7d:</h3></td>
+                        <td class="data">{{ crypto.percent_change_7d or 'N/A' }}%</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Precio (BTC):</h3></td>
+                        <td class="data">{{ crypto.price_btc or 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Capitalización de mercado (USD):</h3></td>
+                        <td class="data">{{ crypto.market_cap_usd or 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Volumen en 24h:</h3></td>
+                        <td class="data">{{ crypto.volume24 or 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Volumen ajustado en 24h:</h3></td>
+                        <td class="data">{{ crypto.volume24a or 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Oferta circulante:</h3></td>
+                        <td class="data">{{ crypto.csupply or 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Oferta total:</h3></td>
+                        <td class="data">{{ crypto.tsupply or 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>Oferta máxima:</h3></td>
+                        <td class="data">{{ crypto.msupply or '∞' }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="crypto-converter">
+                <table>
+                    <tr>
+                        <td class="title"><h3>{{ crypto.symbol }}:</h3></td>
+                        <td class="data"><input type="number" id="crypto" value="1" oninput="convertToUSD()" style="width: 100%;"></td>
+                    </tr>
+                    <tr>
+                        <td class="title"><h3>USD:</h3></td>
+                        <td class="data"><input type="number" id="usd" value="1" oninput="convertToCrypto()" style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="crypto-graphic">
+                <!-- Imagen del gráfico de cambios porcentuales -->
+                <img id="crypto-chart" alt="Gráfico de cambios porcentuales">
+            </div>
+        </div>
+        {% else %}
         <p>No se encontraron datos para esta criptomoneda.</p>
-    {% endif %}
+        {% endif %}
+    </div>
+
+    <script>
+        let price_usd = 0;
+    
+        // Obtener el precio desde la API
+        async function fetchCryptoPrice() {
+            const response = await fetch('URL_DE_TU_API');  // Reemplaza con la URL de tu API
+            const data = await response.json();
+    
+            price_usd = data.price_usd || 0;  // Asegúrate de que este sea el campo correcto
+            updateInputs();  // Llamar la primera vez para llenar los inputs
+        }
+    
+        // Convertir de USD a criptomoneda
+        function convertToCrypto() {
+            let usd = parseFloat(document.getElementById('usd').value);
+            
+            if (price_usd > 0) {
+                let cryptoValue = usd / price_usd;
+                document.getElementById('crypto').value = cryptoValue.toFixed(8); // 8 decimales
+            } else {
+                document.getElementById('crypto').value = 'N/A';
+            }
+        }
+    
+        // Convertir de criptomoneda a USD
+        function convertToUSD() {
+            let crypto = parseFloat(document.getElementById('crypto').value);
+    
+            if (price_usd > 0) {
+                let usdValue = crypto * price_usd;
+                document.getElementById('usd').value = usdValue.toFixed(2); // 2 decimales
+            } else {
+                document.getElementById('usd').value = 'N/A';
+            }
+        }
+    
+        // Actualizar los campos con el valor inicial al cargar la página
+        function updateInputs() {
+            document.getElementById('usd').value = 1;
+            convertToCrypto();  // Calcular cripto inicial desde USD
+        }
+    
+        // Ejecutar la función al cargar la página
+        window.onload = function() {
+            fetchCryptoPrice();
+        };
+    </script>    
+
+
 </body>
 </html>
-

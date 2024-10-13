@@ -141,5 +141,14 @@ footer {
     position: relative; /* Cambiado de absolute a relative */
 }
 
+.green {
+    color: #4caf50;
+}
+.red {
+    color: #f44336;
+}
+.white {
+    color: #ffffff;
+}
 /* Importar la fuente Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap')

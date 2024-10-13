@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criptovisualizer</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
 </head>
@@ -18,7 +19,9 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Ranking</th>
                         <th>Nombre</th>
+                        <th>Símbolo</th>
                         <th>Valor</th>
                         <th>Rendimiento</th>
                         <th>Más Información</th>
@@ -27,9 +30,13 @@
                 <tbody>
                     {% for cripto in cryptos %}
                     <tr>
+                        <td>{{ cripto['rank'] }}</td>
                         <td>{{ cripto['name'] }}</td>
+                        <td>{{ cripto['symbol'] }}</td>
                         <td>${{ cripto['price_usd'] }}</td>
-                        <td>{{ cripto['percent_change_7d'] }}%</td>
+                        <td class="{% if cripto['percent_change_7d']|float > 0 %}green{% elif cripto['percent_change_7d']|float < 0 %}red{% else %}white{% endif %}">
+                            {{ cripto['percent_change_7d'] }}%
+                        </td>
                         <td class="btn-cell">
                             <a href="{{ url_for('home.show_cripto', cripto_id=cripto['id']) }}" class="btn">Analizar</a>
                         </td>
@@ -41,8 +48,9 @@
     </main>
     <footer>
         <p>&copy; 2024 CriptoWeb</p>
+        <script  src="https://widget.coinlore.com/widgets/ticker-widget.js"></script><div class="coinlore-priceticker-widget" data-mcurrency="usd" data-bcolor="#fff" data-scolor="#333" data-ccolor="#428bca" data-pcolor="#428bca"></div>
     </footer>
-
+    
     <script src="{{ url_for('static', filename='js/searchFilter.js') }}"></script>
 </body>
 </html>
