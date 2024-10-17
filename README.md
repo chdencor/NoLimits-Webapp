@@ -1,15 +1,15 @@
-# CriptoVisualizer
+# NoLimits
 ## _Visualización en tiempo real / Visualization in real time_
 
 [ESP]
-CriptoVisualizer es una aplicación de escritorio que permite al usuario ver en tiempo real los cambios en la concurrencia de las 100 principales monedas criptográficas.
+NoLimits es una aplicación de escritorio que permite al usuario ver en tiempo real los cambios en la concurrencia de las 100 principales monedas criptográficas.
 
 - Visualiza el cambio de la moneda en tiempo real
 - Selecciona la moneda de interés para evaluar su cambio
 - Guarda la data analizada en una BASE DE DATOS
 
 [ENG]
-CriptoVisualizer is a desktop application that allows users to see real-time changes in the concurrency of the top 100 cryptocurrencies.
+NoLimits is a desktop application that allows users to see real-time changes in the concurrency of the top 100 cryptocurrencies.
 
 - Visualizes currency changes in real-time
 - Selects the currency of interest to evaluate its change
@@ -56,8 +56,8 @@ The following technologies are used for the development of the application:
 1. Clona el repositorio y navega al directorio del proyecto:
 
     ```bash
-    git clone https://github.com/chdencor/CriptoVisualizer.git
-    cd tu-repositorio
+    git clone https://github.com/chdencor/NoLimits-Webapp.git
+    cd direccion-al-repositorio
     ```
 
 2. Crea y activa un entorno virtual:
@@ -86,8 +86,8 @@ The following technologies are used for the development of the application:
 1. Clone the repository and navigate to the project directory:
 
     ```bash
-    git clone https://github.com/chdencor/CriptoVisualizer.git
-    cd your-repository
+    git clone https://github.com/chdencor/NoLimits-Webapp.git
+    cd project-directory
     ```
 
 2. Create and activate a virtual environment:
