@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CriptoExplorer</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/newstyle.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -20,7 +20,7 @@
 
             <!-- Barra de búsqueda reubicada -->
             <div class="search-container">
-                <input type="search" id="search" placeholder="Busca tu criptomoneda...">
+                <input type="search" id="search" placeholder="Busca tu criptomoneda..." aria-label="Buscar criptomoneda">
             </div>
 
             <!-- Tabla de criptomonedas -->
@@ -37,14 +37,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for cripto in cryptos %}
-                        <tr class="crypto-row" data-href="{{ url_for('home.show_cripto', cripto_id=cripto['id']) }}">
-                            <td>{{ cripto['rank'] }}</td>
-                            <td>{{ cripto['name'] }} ({{ cripto['symbol'] }})</td>
-                            <td>${{ cripto['price_usd'] }}</td>
-                            <td>{{ cripto['percent_change_1h'] }}%</td>
-                            <td>{{ cripto['percent_change_24h'] }}%</td>
-                            <td>{{ cripto['percent_change_7d'] }}%</td>
+                        {% for cripto, latest_record in cryptos %}
+                        <tr class="crypto-row" data-href="{{ url_for('home.show_cripto', cripto_id=cripto.id) }}">
+                            <td>{{ latest_record.rank }}</td>
+                            <td>{{ cripto.name }} ({{ cripto.symbol }})</td>
+                            <td>${{ latest_record.price_usd|default('N/A', true) }}</td>
+                            <td>{{ latest_record.percent_change_1h|default('N/A', true) }}%</td>
+                            <td>{{ latest_record.percent_change_24h|default('N/A', true) }}%</td>
+                            <td>{{ latest_record.percent_change_7d|default('N/A', true) }}%</td>
                         </tr>
                         {% endfor %}
                     </tbody>

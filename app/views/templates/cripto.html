@@ -1,101 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ crypto.name }} - Información</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header style="background-color: white;">
+        <nav class="navbar strange-header" style="background-color: white;">
+            <h1 class="logo">
+                <a href="{{ url_for('home.index') }}" class="no-link-style" style="color: #0b1a3b; text-transform: uppercase; text-shadow: 2px 2px 4px #f0f1f3; transform: rotate(-5deg); font-family: 'Comic Sans MS', cursive; font-size: 50px; background-color: WHITE;">NO LIMITS</a>
+            </h1>
+        </nav>
+    </header>
 
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ crypto.name }} - Información</title>
-        <link rel="stylesheet" href="../../static/css/style.css"> <!-- Archivo CSS -->
-    </head>
-    <body>
-        <header style="background-color: white;">
-            <nav class="navbar strange-header" style="background-color: white;">
-                <h1 class="logo">
-                    <a href="{{ url_for('home.index') }}" class="no-link-style" style="color: #0b1a3b; text-transform: uppercase; text-shadow: 2px 2px 4px #f0f1f3; transform: rotate(-5deg); font-family: 'Comic Sans MS', cursive; font-size: 50px; background-color: WHITE;">NO LIMITS</a>
-                </h1>
-            </nav>
-            
-            
-        </header>
+    <main class="crypto-main">
+        <section class="crypto-details">
+            {% if crypto %}
+                <div class="crypto-header">
+                    <h1 class="crypto-title">{{ crypto.name }} ({{ crypto.symbol }})</h1>
+                </div>
 
-        <main class="crypto-main">
-            <section class="crypto-details">
-                {% if crypto %}
-                    <div class="crypto-header">
-                        <h1 class="crypto-title">{{ crypto.name }} ({{ crypto.symbol }})</h1>
+                <div class="crypto-info">
+                    <div class="crypto-data">
+                        <table class="crypto-table">
+                            <tbody>
+                                <tr>
+                                    <td>Precio (USD):</td>
+                                    <td>${{ latest_record.price_usd if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ranking:</td>
+                                    <td>{{ latest_record.rank if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cambio en 24h:</td>
+                                    <td>{{ latest_record.percent_change_24h if latest_record else 'N/A' }}%</td>
+                                </tr>
+                                <tr>
+                                    <td>Cambio en 1h:</td>
+                                    <td>{{ latest_record.percent_change_1h if latest_record else 'N/A' }}%</td>
+                                </tr>
+                                <tr>
+                                    <td>Cambio en 7d:</td>
+                                    <td>{{ latest_record.percent_change_7d if latest_record else 'N/A' }}%</td>
+                                </tr>
+                                <tr>
+                                    <td>Precio (BTC):</td>
+                                    <td>${{ latest_record.price_btc if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Capitalización de mercado (USD):</td>
+                                    <td>${{ latest_record.market_cap_usd if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Volumen en 24h:</td>
+                                    <td>${{ latest_record.volume24 if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Volumen ajustado en 24h:</td>
+                                    <td>${{ latest_record.volume24a if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Oferta circulante:</td>
+                                    <td>{{ latest_record.csupply if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Oferta total:</td>
+                                    <td>{{ latest_record.tsupply if latest_record else 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Oferta máxima:</td>
+                                    <td>{{ crypto.msupply or '∞' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-    
-                    <div class="crypto-info">
-                        <div class="crypto-data">
-                            <table class="crypto-table">
-                                <tbody>
-                                    <tr>
-                                        <td>Precio (USD):</td>
-                                        <td>${{ crypto.price_usd or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ranking:</td>
-                                        <td>{{ crypto.rank }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cambio en 24h:</td>
-                                        <td>{{ crypto.percent_change_24h or 'N/A' }}%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cambio en 1h:</td>
-                                        <td>{{ crypto.percent_change_1h or 'N/A' }}%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cambio en 7d:</td>
-                                        <td>{{ crypto.percent_change_7d or 'N/A' }}%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Precio (BTC):</td>
-                                        <td>{{ crypto.price_btc or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Capitalización de mercado (USD):</td>
-                                        <td>{{ crypto.market_cap_usd or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volumen en 24h:</td>
-                                        <td>{{ crypto.volume24 or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volumen ajustado en 24h:</td>
-                                        <td>{{ crypto.volume24a or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Oferta circulante:</td>
-                                        <td>{{ crypto.csupply or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Oferta total:</td>
-                                        <td>{{ crypto.tsupply or 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Oferta máxima:</td>
-                                        <td>{{ crypto.msupply or '∞' }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-    
-                        <div class="crypto-graphic">
-                            <img id="crypto-chart" src="ruta-a-la-imagen" alt="Gráfico de cambios porcentuales">
-                        </div>
+
+                    <div class="crypto-graphic">
+                        <img id="crypto-chart" src="{{ url_for('crypto.get_crypto_chart', cripto_id=crypto.id) }}" alt="Gráfico de cambios porcentuales">
                     </div>
-                {% else %}
-                    <p>No se encontraron datos para esta criptomoneda.</p>
-                {% endif %}
-            </section>
-        </main>
-    
-        <footer class="crypto-footer">
-            <p>&copy; 2024 CriptoExplorer</p>
-        </footer>
-    
-        <script src="scripts/converter.js"></script> <!-- Archivo de scripts -->
-    </body>
-    </html>
-    
+                </div>
+            {% else %}
+                <p>No se encontraron datos para esta criptomoneda.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer class="crypto-footer">
+        <p>&copy; 2024 CriptoExplorer</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/converter.js') }}"></script>
+</body>
+</html>
