@@ -3,54 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criptovisualizer</title>
+    <title>CriptoExplorer</title>
     <link rel="stylesheet" href="../../static/css/style.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newstyle.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
 </head>
 <body>
-    <header>
-        <h1>CriptoVisualizer</h1>
-        <input type="text" id="search" placeholder="Buscar criptomonedas...">
-    </header>
-    <main>
-        <section>
-            <h2>ANALIZÁ TU CRIPTO FAVORITA</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Ranking</th>
-                        <th>Nombre</th>
-                        <th>Símbolo</th>
-                        <th>Valor</th>
-                        <th>Rendimiento</th>
-                        <th>Más Información</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for cripto in cryptos %}
-                    <tr>
-                        <td>{{ cripto['rank'] }}</td>
-                        <td>{{ cripto['name'] }}</td>
-                        <td>{{ cripto['symbol'] }}</td>
-                        <td>${{ cripto['price_usd'] }}</td>
-                        <td class="{% if cripto['percent_change_7d']|float > 0 %}green{% elif cripto['percent_change_7d']|float < 0 %}red{% else %}white{% endif %}">
-                            {{ cripto['percent_change_7d'] }}%
-                        </td>
-                        <td class="btn-cell">
-                            <a href="{{ url_for('home.show_cripto', cripto_id=cripto['id']) }}" class="btn">Analizar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="wrapper">
+        <!-- Encabezado modificado -->
+        <nav class="navbar strange-header">
+            <h1 class="logo" style="color: #0b1a3b; text-transform: uppercase; text-shadow: 2px 2px 4px #f0f1f3; transform: rotate(-5deg); font-family: 'Comic Sans MS', cursive;">NO LIMITS</h1>
+        </nav>
+
+        <!-- Sección principal -->
+        <section class="main-section">
+
+            <!-- Barra de búsqueda reubicada -->
+            <div class="search-container">
+                <input type="search" id="search" placeholder="Busca tu criptomoneda...">
+            </div>
+
+            <!-- Tabla de criptomonedas -->
+            <div class="table-container">
+                <table class="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Criptomoneda</th>
+                            <th>Precio (USD)</th>
+                            <th>1h</th>
+                            <th>24h</th>
+                            <th>7d</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cripto in cryptos %}
+                        <tr class="crypto-row" data-href="{{ url_for('home.show_cripto', cripto_id=cripto['id']) }}">
+                            <td>{{ cripto['rank'] }}</td>
+                            <td>{{ cripto['name'] }} ({{ cripto['symbol'] }})</td>
+                            <td>${{ cripto['price_usd'] }}</td>
+                            <td>{{ cripto['percent_change_1h'] }}%</td>
+                            <td>{{ cripto['percent_change_24h'] }}%</td>
+                            <td>{{ cripto['percent_change_7d'] }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </section>
-    </main>
+    </div>
+
     <footer>
-        <p>&copy; 2024 CriptoWeb</p>
-        <script  src="https://widget.coinlore.com/widgets/ticker-widget.js"></script><div class="coinlore-priceticker-widget" data-mcurrency="usd" data-bcolor="#fff" data-scolor="#333" data-ccolor="#428bca" data-pcolor="#428bca"></div>
+        <p>&copy; 2024 CriptoExplorer | Powered by CoinAPI</p>
     </footer>
-    
+
     <script src="{{ url_for('static', filename='js/searchFilter.js') }}"></script>
+    <script>
+        // Hace que las filas de la tabla sean clicables
+        document.querySelectorAll('.crypto-row').forEach(row => {
+            row.addEventListener('click', () => {
+                const url = row.getAttribute('data-href');
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

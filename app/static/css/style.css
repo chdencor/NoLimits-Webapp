@@ -1,154 +1,266 @@
-/* Reset de márgenes y relleno */
+/* Reinicio básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilo general para el body */
+/* Configuración básica de la página */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    background-color: #f7f8fa;
+    color: #333;
     line-height: 1.6;
-    background-color: #121212;
-    color: #E0E0E0;
-    min-height: 100vh;  /* Hace que el cuerpo ocupe al menos la altura de la ventana */
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Estilo para el encabezado */
-header {
-    background: #1E1E1E; /* Fondo del encabezado más oscuro */
-    color: #E0E0E0; /* Texto claro */
+.wrapper {
+    flex: 1;
+}
+
+/* Navegación */
+.navbar {
+    background-color: #2e3a59;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    color: #FFD700; /* Color dorado para el título */
-    font-family: 'Montserrat', sans-serif; /* Tipografía personalizada */
+.navbar .logo a {
+    text-decoration: none;
+    color: #ffd700;
+    font-size: 1.8rem;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
 }
 
-header input[type="text"] {
+.navbar input[type="search"] {
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #333; /* Borde gris oscuro */
-    border-radius: 4px;
     width: 300px;
-    background: #333; /* Fondo del input */
-    color: #E0E0E0; /* Color del texto del input */
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #333;
 }
 
-/* Mantén el main flex para que crezca cuando sea necesario */
-main {
-    flex: 1;
+/* Sección principal */
+.main-section {
+    padding: 40px 20px;
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin: auto;
 }
 
-section h2 {
-    font-size: 3rem;
-    color: #ffffff; /* Color del encabezado de sección */
+.main-section h2 {
     text-align: center;
-    margin-bottom: 30px;
-    font-family: 'Montserrat', sans-serif; /* Tipografía personalizada */
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.crypto-table th, .crypto-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.crypto-table th {
+    background-color: #2e3a59;
+    color: white;
+    font-weight: bold;
+}
+
+.crypto-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.crypto-table tr:hover {
+    background-color: #f7f7f7;
+}
+
+.crypto-table td.up {
+    color: #4caf50;
+}
+
+.crypto-table td.down {
+    color: #f44336;
+}
+
+.crypto-table td.neutral {
+    color: #777;
+}
+
+.crypto-table .info-btn {
+    padding: 8px 12px;
+    background-color: #ffb300;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.crypto-table .info-btn:hover {
+    background-color: #ff9900;
+}
+
+/* Footer */
+footer {
+    background-color: #2e3a59;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+/* Estilos para cripto.html */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #2c3e50;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 a {
+    color: white;
+    text-decoration: none; /* Elimina el subrayado */
+    font-size: 2rem;
+}
+
+h1 a.no-link-style:hover {
+    text-decoration: none; /* Mantiene el título sin subrayado al pasar el ratón */
+}
+
+
+.crypto-header h1.crypto-title {
+    margin-left: 20px; /* Margen izquierdo para el título */
+    font-size: 2.5rem;
+    color: #333;
+}
+
+
+.crypto-table td:first-child {
+    font-weight: bold;
+}
+
+.crypto-graphic img {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.crypto-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos locos para el encabezado */
+.strange-header {
+    background-color: #ffffff; /* Fondo negro */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #151c4f; /* Borde inferior azul fluorescente */
+    transform: skew(-5deg);
+}
+
+.strange-header h1 {
+    font-size: 3rem;
+    font-family: 'Comic Sans MS', cursive;
+    color: #ff00ff; /* Color morado */
+    text-shadow: 2px 2px 4px #151c4f;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+}
+
+/* Estilo para la barra de búsqueda */
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-container input {
+    width: 60%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #151c4f;
+    background-color: #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    border-color: #ff00ff;
+    outline: none;
 }
 
 /* Estilo para la tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #1E1E1E; /* Fondo oscuro para la tabla */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.crypto-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-table th, table td {
-    padding: 12px;
-    border-bottom: 1px solid #333; /* Borde de las celdas */
+.crypto-table tbody tr:hover {
+    background-color: #f0f0f0; /* Cambia el color de fondo al pasar el mouse */
 }
 
-/* Estilo para los encabezados de la tabla */
-table th {
-    background: #333; /* Fondo gris oscuro */
-    color: #E0E0E0; /* Texto claro */
-    text-align: center;
+/* Estilos locos para el encabezado */
+.strange-header {
+    background-color: #ffffff; /* Color de fondo */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #151c4f; /* Borde inferior */
+    transform: skew(-5deg);
 }
 
-/* Estilo para las celdas de la tabla */
-table td {
-    text-align: left; /* Por defecto, alineación de celdas a la izquierda */
+/* Estilo del h1 */
+.strange-header h1 {
+    font-size: 3rem; /* Tamaño de la fuente */
+    font-family: 'Comic Sans MS', cursive; /* Fuente */
+    color: #ff00ff; /* Color del texto */
+    text-shadow: 2px 2px 4px #151c4f; /* Sombra del texto */
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    margin-left: 0;
 }
 
-/* Centramos el contenido de todas las columnas excepto la columna de nombres de las criptos */
-table td:not(:first-child) {
-    text-align: center;
+/* Estilo del enlace para que sea igual al h1 */
+.no-link-style {
+    color: inherit; /* Hereda el color del h1 */
+    text-decoration: none; /* Elimina el subrayado */
+    font-size: inherit; /* Hereda el tamaño de letra del h1 */
+    font-family: inherit; /* Hereda la fuente del h1 */
+    background-color: transparent; /* Asegura que no haya background */
 }
 
-/* Alterna el color de fondo en filas pares */
-table tr:nth-child(even) {
-    background: #2C2C2C; /* Fondo gris oscuro para filas pares */
-}
-
-/* Estilo para filas cuando se pasa el mouse sobre ellas */
-table tr:hover {
-    background: #333; /* Fondo aún más oscuro al pasar el mouse */
-}
-
-/* Estilo para los enlaces */
-table a {
-    color: #1E90FF; /* Color azul claro para enlaces */
-    text-decoration: none;
-}
-
-/* Estilo para el botón "Analizar" */
-.btn {
-    display: inline-block;
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #000000; /* Texto del botón en negro para mejor contraste */
-    background-color: #FFD700; /* Fondo dorado */
-    border: 2px solid #FFD700; /* Borde dorado */
-    border-radius: 12px; /* Bordes más redondeados */
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.btn:hover {
-    background-color: #FFC107; /* Fondo amarillo claro al pasar el mouse */
-    color: #333; /* Texto oscuro al pasar el mouse */
-}
-
-/* Centrando el botón en la columna */
-.btn-cell {
-    text-align: center; /* Centra el botón en su celda */
-}
-
-/* Estilo para el pie de página */
-footer {
-    background: #1E1E1E;
-    color: #E0E0E0;
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-    position: relative; /* Cambiado de absolute a relative */
-}
-
-.green {
-    color: #4caf50;
-}
-.red {
-    color: #f44336;
-}
-.white {
-    color: #ffffff;
-}
-/* Importar la fuente Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap')
