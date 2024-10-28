@@ -1,5 +1,5 @@
 from sqlalchemy.orm import sessionmaker
-from app.models.ORM import Criptomoneda
+from app.models.dbBorker import Criptomoneda
 
 def get_cripto_param_by_symbol(session, symbol, param):
     """

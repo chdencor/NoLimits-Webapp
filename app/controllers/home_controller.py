@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from app.models.ORM import Criptomoneda, Registro
+from app.models.dbBorker import Criptomoneda, Registro
 from app import db
 
 home_bp = Blueprint('home', __name__, template_folder='../views/templates')

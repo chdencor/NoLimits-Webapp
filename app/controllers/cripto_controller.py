@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.models.ORM import Criptomoneda, Registro  # Importar Registro
+from app.models.dbBorker import Criptomoneda, Registro  # Importar Registro
 import matplotlib.pyplot as plt
 import matplotlib
 import io
